@@ -1,16 +1,12 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import bg from "./assets/bg.jpg";
-
-// screens
-import ModalLargeScreen from "./screens/ModalLargeScreen"; //large screen modal view
-
-//NOTICE => Dear Reviewer, The mutiple screen is for aesthetics and Quick demonstration of responsiveness only, and in no way would be implemented in a live project.
+import Modal from "./components/modal";
 
 function App() {
   return (
     <Wrapper>
-      <ModalLargeScreen />
+      <Modal />
     </Wrapper>
   );
 }
@@ -30,9 +26,4 @@ const Wrapper = styled.main`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  @media screen and (min-width: 1000px) {
-    background-size: contain;
-    background-position: right;
-  }
 `;

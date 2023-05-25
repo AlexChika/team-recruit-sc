@@ -1,6 +1,11 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+:root{
+    --blue-color:#0c0cd7;
+    --gray-color:#3b3b3b;
+    --black-color:#02021e;
+}
 
 *{
     margin:0;
@@ -19,6 +24,7 @@ html{
 body{
     font-size:1.6rem;
     background-color:whitesmoke;
+    color:var(--black-color);
 }
 
 
@@ -29,6 +35,14 @@ button, a input{
     cursor:pointer;
     text-decoration:none;
     color:inherit;
+}
+
+
+/* utilitues */
+.fcenter{
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 `;
 

@@ -12,6 +12,7 @@ This project was styled with styled-components and written with Typescript.
 ### App Dependencies
 
 - styled-components
+- React-icons
 
 ### `live preview`
 
