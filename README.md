@@ -1,6 +1,6 @@
 # Team Recruit Design Test
 
-This project was bootstrapped is styled with styled-components and written with Typescript
+This project was styled with styled-components and written with Typescript.
 
 ## Core Dependencies
 
