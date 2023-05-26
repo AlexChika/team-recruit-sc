@@ -23,7 +23,7 @@ const Password = () => {
 export default Password;
 
 const Wrapper = styled.div`
-  margin-top: 20px;
+  margin-top: 30px;
   color: var(--black-color);
   display: flex;
   align-items: center;

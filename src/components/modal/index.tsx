@@ -5,10 +5,12 @@ import ExpiryDate from "./ExpiryDate";
 import CvvNumber from "./CvvNumber";
 import Password from "./Password";
 import PayNowButton from "./PayNowButton";
+import OrderSummaryCard from "./OrderSummaryCard";
 
 const Modal = () => {
   return (
     <Wrapper>
+      {/* Card details form */}
       <section>
         <ModalHeader />
         <CardNumber />
@@ -18,7 +20,10 @@ const Modal = () => {
         <PayNowButton />
       </section>
 
-      <section></section>
+      {/* purchase overview card */}
+      <section>
+        <OrderSummaryCard />
+      </section>
     </Wrapper>
   );
 };
@@ -38,25 +43,39 @@ const Wrapper = styled.div`
     width: 100%;
   }
 
-  @media screen and (min-width: 500px) {
+  section:nth-of-type(2) {
+    border-radius: 10px;
+  }
+
+  @media screen and (min-width: 400px) {
     padding: 20px 30px;
   }
 
+  @media screen and (min-width: 500px) {
+    padding: 50px;
+  }
+
   @media screen and (min-width: 768px) {
+    padding: 30px;
     flex-direction: row;
     gap: 30px;
 
+    section:nth-of-type(1) {
+      width: 57%;
+    }
+
+    section:nth-of-type(2) {
+      width: 43%;
+    }
+  }
+
+  @media screen and (min-width: 1000px) {
     section:nth-of-type(1) {
       width: 65%;
     }
 
     section:nth-of-type(2) {
       width: 35%;
-      border: 2px solid gray;
     }
-  }
-
-  @media screen and (min-width: 1200px) {
-    padding: 30px;
   }
 `;

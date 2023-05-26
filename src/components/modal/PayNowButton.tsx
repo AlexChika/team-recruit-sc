@@ -7,7 +7,7 @@ const PayNowButton = () => {
 export default PayNowButton;
 
 const Wrapper = styled.button`
-  margin-top: 20px;
+  margin-top: 30px;
   border-radius: 10px;
   height: 45px;
   width: 100%;
