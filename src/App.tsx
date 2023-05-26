@@ -14,7 +14,7 @@ function App() {
 export default App;
 
 const Wrapper = styled.main`
-  padding: 10px;
+  padding: 10px 6px;
   margin: 0 auto;
   max-width: 1200px;
   min-height: 100vh;

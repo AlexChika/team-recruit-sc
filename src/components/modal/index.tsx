@@ -43,7 +43,13 @@ const Wrapper = styled.div`
     width: 100%;
   }
 
+  section:nth-of-type(1) {
+    order: 2;
+    padding-top: 50px;
+  }
+
   section:nth-of-type(2) {
+    order: 1;
     border-radius: 10px;
   }
 
@@ -61,11 +67,14 @@ const Wrapper = styled.div`
     gap: 30px;
 
     section:nth-of-type(1) {
-      width: 57%;
+      order: 1;
+      width: 60%;
+      padding-top: 0px;
     }
 
     section:nth-of-type(2) {
-      width: 43%;
+      order: 2;
+      width: 40%;
     }
   }
 
