@@ -142,7 +142,7 @@ const Wrapper = styled.div`
 
       input {
         width: 100%;
-        /* pointer-events: none; */
+        pointer-events: none;
       }
 
       input::placeholder,

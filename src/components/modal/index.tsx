@@ -2,6 +2,8 @@ import styled from "styled-components";
 import ModalHeader from "./ModalHeader";
 import CardNumber from "./CardNumber";
 import ExpiryDate from "./ExpiryDate";
+import CvvNumber from "./CvvNumber";
+import Password from "./Password";
 
 const Modal = () => {
   return (
@@ -9,7 +11,9 @@ const Modal = () => {
       <section>
         <ModalHeader />
         <CardNumber />
+        <CvvNumber />
         <ExpiryDate />
+        <Password />
       </section>
 
       <section></section>
