@@ -99,8 +99,10 @@ const Wrapper = styled.div`
     .header__logo__name {
       font-size: clamp(1.5rem, 3.5vw, 2rem);
       color: var(--gray-color);
+      font-weight: 500;
 
       span {
+        font-size: inherit;
         font-weight: 700;
         color: var(--black-color);
       }

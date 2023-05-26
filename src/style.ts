@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
 :root{
     --blue-color:#0c0cd7;
-    --gray-color:#3b3b3b;
+    --gray-color:#808080;
     --black-color:#02021e;
 }
 
@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing:border-box;
     font-weight:400;
     -webkit-tap-highlight-color:transparent;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 html{
