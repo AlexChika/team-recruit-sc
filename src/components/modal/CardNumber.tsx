@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { FaPencilAlt } from "react-icons/fa";
 import { BsFillPatchCheckFill } from "react-icons/bs";
+import MasterCardLogo from "../../assets/mastercardlogo.png";
 
 const CardNumber = () => {
   return (
@@ -19,7 +20,7 @@ const CardNumber = () => {
 
       <div className="cardnumber__box">
         <span className="logo__wrapper">
-          <img src={require("../../assets/mastercardlogo.png")} alt="" />
+          <img src={MasterCardLogo} alt="" />
         </span>
 
         {/* number / inputs wrapper */}

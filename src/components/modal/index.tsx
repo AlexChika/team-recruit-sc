@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import ModalHeader from "./ModalHeader";
 import CardNumber from "./CardNumber";
+import ExpiryDate from "./ExpiryDate";
 
 const Modal = () => {
   return (
@@ -8,6 +9,7 @@ const Modal = () => {
       <section>
         <ModalHeader />
         <CardNumber />
+        <ExpiryDate />
       </section>
 
       <section></section>
