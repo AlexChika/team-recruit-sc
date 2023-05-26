@@ -5,21 +5,17 @@ import getTime from "../../utils/helper";
 
 const ModalHeader = () => {
   const HeaderTime = useRef<null | HTMLDivElement>(null);
-
-  /* NOTE ***** Dear recruiter/reviewer, In implemeting the time UI, I went with the interval and useRef, this logic is also possible by updating a state using the interval. The object returned from getTime func could be passed into a state.
-   */
+  const [time, setTime] = useState({
+    box1: "0",
+    box3: "0",
+    box2: "0",
+    box4: "0",
+  });
 
   // effect updates time every 10sec.
   useEffect(() => {
     function updateTime() {
-      if (!HeaderTime.current) return;
-      const boxes = [...HeaderTime.current.querySelectorAll("span")];
-
-      boxes.forEach((box: HTMLSpanElement, index: number) => {
-        const name = box.dataset.name!;
-        // @ts-ignore
-        box.textContent = getTime()[name];
-      });
+      setTime(getTime());
     }
 
     updateTime(); //initial update onrender
@@ -46,15 +42,15 @@ const ModalHeader = () => {
 
       <div ref={HeaderTime} className="header__time fcenter">
         <div className="fcenter">
-          <span data-name="box1">0</span>
-          <span data-name="box2">1</span>
+          <span>{time.box1}</span>
+          <span>{time.box2}</span>
         </div>
 
         <small>:</small>
 
         <div className="fcenter">
-          <span data-name="box3">2</span>
-          <span data-name="box4">3</span>
+          <span>{time.box3}</span>
+          <span>{time.box4}</span>
         </div>
       </div>
     </Wrapper>
@@ -101,7 +97,7 @@ const Wrapper = styled.div`
     }
 
     .header__logo__name {
-      font-size: clamp(1.8rem, 3.5vw, 2rem);
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
       color: var(--gray-color);
 
       span {
@@ -125,7 +121,7 @@ const Wrapper = styled.div`
       background-color: var(--black-color);
       color: white;
       padding: 8px;
-      font-size: clamp(1.8rem, 3.5vw, 2rem);
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
       border-radius: 5px;
     }
 

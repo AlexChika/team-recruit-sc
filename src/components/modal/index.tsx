@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import ModalHeader from "./ModalHeader";
+import CardNumber from "./CardNumber";
 
 const Modal = () => {
   return (
     <Wrapper>
       <section>
         <ModalHeader />
+        <CardNumber />
       </section>
 
       <section></section>
@@ -21,7 +23,7 @@ const Wrapper = styled.div`
   background-color: white;
   width: 100%;
   max-width: 900px;
-  padding: 10px 20px;
+  padding: 10px;
   margin: 0 auto;
 
   section {
