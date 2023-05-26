@@ -21,8 +21,8 @@ const ModalHeader = () => {
     updateTime(); //initial update onrender
 
     let interval = setInterval(() => {
-      updateTime(); //this could be more than 10 sec
-    }, 10000);
+      updateTime();
+    }, 10000); //this could be less than 10 sec
 
     return () => clearInterval(interval);
   }, []);
@@ -97,7 +97,7 @@ const Wrapper = styled.div`
     }
 
     .header__logo__name {
-      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      font-size: clamp(1.7rem, 3.5vw, 2rem);
       color: var(--gray-color);
       font-weight: 500;
 

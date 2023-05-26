@@ -28,7 +28,7 @@ body{
 }
 
 
-button, a input{
+button, a, input{
     border:none;
     outline:none;
     background-color:transparent;
@@ -36,6 +36,11 @@ button, a input{
     text-decoration:none;
     color:inherit;
 }
+
+img{
+        width:100%;
+        height:100%;
+      }
 
 
 /* utilitues */
