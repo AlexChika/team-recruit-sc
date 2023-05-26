@@ -4,6 +4,7 @@ import CardNumber from "./CardNumber";
 import ExpiryDate from "./ExpiryDate";
 import CvvNumber from "./CvvNumber";
 import Password from "./Password";
+import PayNowButton from "./PayNowButton";
 
 const Modal = () => {
   return (
@@ -14,6 +15,7 @@ const Modal = () => {
         <CvvNumber />
         <ExpiryDate />
         <Password />
+        <PayNowButton />
       </section>
 
       <section></section>
@@ -29,7 +31,7 @@ const Wrapper = styled.div`
   background-color: white;
   width: 100%;
   max-width: 900px;
-  padding: 10px;
+  padding: 20px 10px;
   margin: 0 auto;
 
   section {
@@ -37,7 +39,7 @@ const Wrapper = styled.div`
   }
 
   @media screen and (min-width: 500px) {
-    padding: 10px 30px;
+    padding: 20px 30px;
   }
 
   @media screen and (min-width: 768px) {
@@ -55,6 +57,6 @@ const Wrapper = styled.div`
   }
 
   @media screen and (min-width: 1200px) {
-    /* padding: 10px 30px; */
+    padding: 30px;
   }
 `;
