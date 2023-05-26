@@ -52,7 +52,8 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
     flex: 1;
-    min-width: 100px;
+    min-width: 140px;
+    max-width: 260px;
 
     /* responsible for collecting values */
     input {
@@ -72,8 +73,6 @@ const Wrapper = styled.div`
 
   @media screen and (min-width: 360px) {
     .password__box {
-      min-width: 120px;
-
       /* The 3 grid menu icon */
       .menu__icon {
         font-size: 2rem;
@@ -88,8 +87,6 @@ const Wrapper = styled.div`
   @media screen and (min-width: 600px) {
     gap: 25px;
     .password__box {
-      /* height: 50px; */
-
       /* The 3 grid menu icon */
       .menu__icon {
         font-size: 2.5rem;

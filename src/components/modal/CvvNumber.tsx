@@ -52,7 +52,8 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
     flex: 1;
-    min-width: 100px;
+    min-width: 90px;
+    max-width: 260px;
 
     /* responsible for collecting values */
     input {
