@@ -61,7 +61,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 10px;
+  padding: 15px;
   background-color: #cce6e623;
   border-radius: inherit;
 

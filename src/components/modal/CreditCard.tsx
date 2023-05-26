@@ -31,14 +31,10 @@ const CreditCard = () => {
         </div>
       </div>
 
-      {/* <div className="no__card">
-        <span className="fcenter">
-          <FcSimCardChip />
-        </span>
-        <span className="fcenter">
-          <BiWifi />
-        </span>
-      </div> */}
+      <div className="no__card fcenter">
+        <p>You have no saved cards</p>
+        <h3>fill in your card details</h3>
+      </div>
     </Wrapper>
   );
 };
@@ -49,6 +45,20 @@ const Wrapper = styled.div`
   background-color: white;
   border-radius: 20px;
   padding: 20px 20px;
+  position: relative;
+
+  .card {
+    filter: blur(4px);
+  }
+
+  .no__card {
+    position: absolute;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
 
   .card__header {
     display: flex;
@@ -64,7 +74,7 @@ const Wrapper = styled.div`
   }
 
   .card__body {
-    margin-top: 30px;
+    margin-top: 20px;
 
     p {
       font-size: 2rem;
@@ -72,7 +82,7 @@ const Wrapper = styled.div`
   }
 
   .card__footer {
-    margin-top: 30px;
+    margin-top: 20px;
     display: flex;
     justify-content: space-between;
 
