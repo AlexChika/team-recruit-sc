@@ -1,7 +1,17 @@
 import styled from "styled-components";
+import { Store } from ".";
+import { createCardAction } from "./actions";
 
 const PayNowButton = () => {
-  return <Wrapper>Pay Now</Wrapper>;
+  const { dispatch, cardNumber, expiryMonth, expiryYear } = Store();
+
+  function handleSubmit() {
+    if (!cardNumber || !expiryMonth || !expiryYear) return;
+
+    createCardAction(dispatch);
+  }
+
+  return <Wrapper onClick={handleSubmit}>Pay Now</Wrapper>;
 };
 
 export default PayNowButton;

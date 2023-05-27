@@ -12,8 +12,7 @@ const ExpiryDate = () => {
     expiryYear: false,
   });
 
-  // @ts-ignore
-  const { dispatch } = Store();
+  const { dispatch, cards } = Store();
 
   function expiryMonthOnchange(e: React.ChangeEvent<HTMLInputElement>) {
     const val = e.currentTarget.value.split("").slice(0, 2).join("");
@@ -33,7 +32,6 @@ const ExpiryDate = () => {
     let valid = !isNaN(Number(number)) && number.length === 2;
     toggleClass(isNaN(Number(number)), el); //error class
     toggleClass(valid, el, "valid"); //valid class
-
     return valid;
   } // simply toggles error classes
 
@@ -42,6 +40,11 @@ const ExpiryDate = () => {
     expiryMonthAction(expiryMonth, isValid.expiryMonth, dispatch);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isValid]);
+
+  useEffect(() => {
+    setExpiryMonth("");
+    setExpiryYear("");
+  }, [cards]);
 
   return (
     <Wrapper>

@@ -1,11 +1,14 @@
 import styled from "styled-components";
+import { useEffect } from "react";
 import { BsGrid3X3GapFill } from "react-icons/bs";
 import { useState } from "react";
 import { toggleClass } from "./utils";
+import { Store } from ".";
 
 const CvvNumber = () => {
   const [cvvNumber, setCvvNumber] = useState("");
-  const [valid, setValid] = useState(false);
+
+  const { cards } = Store();
 
   function inputOnchange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.currentTarget.value.split("").slice(0, 4).join("");
@@ -13,14 +16,15 @@ const CvvNumber = () => {
     validator(value, e.currentTarget.parentElement!);
   }
 
-  console.log(valid);
-
   function validator(number: string, el: HTMLElement) {
     let valid = !isNaN(Number(number)) && number.length === 4;
     toggleClass(isNaN(Number(number)), el); //error class
     toggleClass(valid, el, "valid"); //valid class
-    setValid(valid);
   } // simply toggles error classes
+
+  useEffect(() => {
+    setCvvNumber("");
+  }, [cards]);
 
   return (
     <Wrapper>

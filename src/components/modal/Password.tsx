@@ -1,10 +1,14 @@
 import styled from "styled-components";
+import { useEffect } from "react";
 import { BsGrid3X3GapFill } from "react-icons/bs";
 import { useState } from "react";
 import { toggleClass } from "./utils";
+import { Store } from ".";
 
 const Password = () => {
   const [password, setPassword] = useState("");
+
+  const { cards } = Store();
 
   function inputOnchange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.currentTarget.value.split("").slice(0, 8).join("");
@@ -16,6 +20,10 @@ const Password = () => {
     toggleClass(isNaN(Number(number)), el); //error class
     toggleClass(!isNaN(Number(number)) && number.length === 8, el, "valid"); //valid class
   } // simply toggles error classes
+
+  useEffect(() => {
+    setPassword("");
+  }, [cards]);
 
   return (
     <Wrapper>

@@ -9,7 +9,7 @@ type StateType = {
   expiryMonth: string;
   expiryYear: string;
   cards: CardType[];
-  currentCard: null | CardType;
+  dispatch: React.Dispatch<ActionType> | any;
 };
 
 type ActionType = {

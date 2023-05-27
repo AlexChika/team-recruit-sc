@@ -42,6 +42,7 @@ function toggleClass(condition: boolean, el: HTMLElement, className = "error") {
 
 function reducer(state: StateType, action: ActionType) {
   const { type, payload } = action;
+
   if (types.AddCardNumber === type) {
     return {
       ...state,
@@ -82,6 +83,26 @@ function reducer(state: StateType, action: ActionType) {
       ...state,
       expiryMonth: "",
     };
+  }
+
+  if (types.createNewCard === type) {
+    if (state.cardNumber && state.expiryMonth && state.expiryYear) {
+      const newCard: CardType = {
+        cardNumber: state.cardNumber,
+        expiryMonth: state.expiryMonth,
+        expiryYear: state.expiryYear,
+      };
+
+      return {
+        ...state,
+        cardNumber: "",
+        expiryMonth: "",
+        expiryyear: "",
+        cards: [newCard],
+      };
+    }
+
+    // return state;
   }
 
   return state;

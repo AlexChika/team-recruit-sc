@@ -14,15 +14,13 @@ const initialState: StateType = {
   cardNumber: "",
   expiryMonth: "",
   expiryYear: "",
-  currentCard: null,
+  dispatch: "",
 };
 
-const ModalContext = createContext({});
+const ModalContext = createContext(initialState);
 
 const Modal = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  console.log(state);
 
   return (
     <ModalContext.Provider value={{ ...state, dispatch }}>

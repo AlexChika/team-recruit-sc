@@ -18,8 +18,7 @@ const CardNumber = () => {
     input4: "",
   });
 
-  // @ts-ignore
-  const { dispatch } = Store();
+  const { dispatch, cards } = Store();
 
   function focusInputBox(number: string) {
     if (!InputWrapper.current) return;
@@ -136,6 +135,18 @@ const CardNumber = () => {
     cardNumberAction(cardNumber, valid, dispatch);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [valid]);
+
+  useEffect(() => {
+    const newInputVal = {
+      input1: "",
+      input2: "",
+      input3: "",
+      input4: "",
+    };
+
+    setInputVal(newInputVal);
+    setCardNumber(getTotalNumber(newInputVal));
+  }, [cards]);
 
   return (
     <Wrapper>

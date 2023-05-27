@@ -1,12 +1,6 @@
 const AddCardNumber = "AddCardNumber";
 const RemoveCardNumber = "RemoveCardNumber";
 
-const AddCvvNumber = "AddCvvNumber";
-const RemoveCvvNumber = "RemoveCvvNumber";
-
-const AddPassword = "AddPassword";
-const RemovePassword = "RemovePassword";
-
 const AddExpiryMonth = "AddExpiryMonth";
 const RemoveExpiryMonth = "RemoveExpiryMonth";
 
@@ -19,10 +13,6 @@ const createNewCard = "createNewCard";
 const types = {
   AddCardNumber,
   RemoveCardNumber,
-  AddCvvNumber,
-  RemoveCvvNumber,
-  AddPassword,
-  RemovePassword,
   AddExpiryMonth,
   RemoveExpiryMonth,
   AddExpiryYear,
@@ -71,15 +61,10 @@ function createCardAction(dispatch: React.Dispatch<ActionType>) {
   dispatch({ type: types.createNewCard, payload: "" });
 }
 
-function currentCardAction(id: string, dispatch: React.Dispatch<ActionType>) {
-  dispatch({ type: types.AddCurrentCard, payload: id });
-}
-
 export {
   types,
   cardNumberAction,
   expiryMonthAction,
   expiryYearAction,
-  currentCardAction,
   createCardAction,
 };
