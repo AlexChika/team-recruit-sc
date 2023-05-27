@@ -141,7 +141,7 @@ const Wrapper = styled.main`
       font-weight: 600;
 
       .paragraph {
-        margin-top: 30px;
+        margin-top: 20px;
         padding: 10px;
 
         p {
