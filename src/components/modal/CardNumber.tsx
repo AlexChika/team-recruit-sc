@@ -89,13 +89,16 @@ const CardNumber = () => {
     if (!InputWrapper.current) return;
     let el = InputWrapper.current.parentElement!;
 
-    focusInputBox(cardNumber);
     toggleClass(!Number(cardNumber), el); //error class
     toggleClass(
       typeof Number(cardNumber) === "number" && cardNumber.length === 16,
       el,
       "valid"
     ); //valid class
+  }, [inputVal]);
+
+  useEffect(() => {
+    focusInputBox(cardNumber);
   }, [cardNumber]);
 
   useEffect(() => {
@@ -125,7 +128,7 @@ const CardNumber = () => {
       });
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cardNumber]);
+  }, [inputVal]);
 
   return (
     <Wrapper>
