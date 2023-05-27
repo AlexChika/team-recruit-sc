@@ -80,10 +80,11 @@ const Wrapper = styled.div`
   max-width: 900px;
   padding: 20px 10px;
   margin: 0 auto;
+  transition: all 0.7s linear;
 
   &.close {
-    animation: closemodal 0.7s linear;
-    display: none;
+    opacity: 0;
+    transform: scale(0);
   }
 
   .close__button {
@@ -96,23 +97,6 @@ const Wrapper = styled.div`
     font-size: 2rem;
     font-weight: 700;
     animation: button 5s linear infinite;
-  }
-
-  @keyframes closemodal {
-    0% {
-      opacity: 1;
-      transform: scale(1);
-      display: block;
-    }
-
-    99% {
-      opacity: 0;
-      tarnsform: scale(0);
-    }
-
-    100% {
-      display: none;
-    }
   }
 
   @keyframes button {
