@@ -2,19 +2,24 @@ import styled from "styled-components";
 import { FaPencilAlt } from "react-icons/fa";
 import { BsFillPatchCheckFill } from "react-icons/bs";
 import MasterCardLogo from "../../assets/mastercardlogo.png";
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { toggleClass } from "./utils";
+import { cardNumberAction } from "./actions";
+import { Store } from ".";
 
 const CardNumber = () => {
   const InputWrapper = useRef<null | HTMLDivElement>(null);
   const [cardNumber, setCardNumber] = useState("");
+  const [valid, setValid] = useState(false);
   const [inputVal, setInputVal] = useState({
     input1: "",
     input2: "",
     input3: "",
     input4: "",
   });
-  const [valid, setValid] = useState(false);
+
+  // @ts-ignore
+  const { dispatch } = Store();
 
   function focusInputBox(number: string) {
     if (!InputWrapper.current) return;
@@ -92,8 +97,7 @@ const CardNumber = () => {
     let valid = !isNaN(Number(cardNumber)) && cardNumber.length === 16;
     toggleClass(isNaN(Number(cardNumber)), el); //error class
     toggleClass(valid, el, "valid"); //valid class
-
-    valid ? setValid(true) : setValid(false);
+    setValid(valid);
   } // simply toggles error classes
 
   useEffect(() => {
@@ -112,7 +116,6 @@ const CardNumber = () => {
       const isDeleting = inputVal[name].length < 1;
 
       if ((e.key === "Delete" || e.key === "Backspace") && isDeleting) {
-        console.log("deleting");
         onDelete(name, id);
       }
     }
@@ -128,6 +131,11 @@ const CardNumber = () => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputVal]);
+
+  useEffect(() => {
+    cardNumberAction(cardNumber, valid, dispatch);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [valid]);
 
   return (
     <Wrapper>

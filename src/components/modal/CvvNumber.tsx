@@ -5,6 +5,7 @@ import { toggleClass } from "./utils";
 
 const CvvNumber = () => {
   const [cvvNumber, setCvvNumber] = useState("");
+  const [valid, setValid] = useState(false);
 
   function inputOnchange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.currentTarget.value.split("").slice(0, 4).join("");
@@ -12,9 +13,13 @@ const CvvNumber = () => {
     validator(value, e.currentTarget.parentElement!);
   }
 
+  console.log(valid);
+
   function validator(number: string, el: HTMLElement) {
+    let valid = !isNaN(Number(number)) && number.length === 4;
     toggleClass(isNaN(Number(number)), el); //error class
-    toggleClass(!isNaN(Number(number)) && number.length === 4, el, "valid"); //valid class
+    toggleClass(valid, el, "valid"); //valid class
+    setValid(valid);
   } // simply toggles error classes
 
   return (

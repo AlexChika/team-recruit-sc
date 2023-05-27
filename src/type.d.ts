@@ -9,9 +9,10 @@ type StateType = {
   expiryMonth: string;
   expiryYear: string;
   cards: CardType[];
+  currentCard: null | CardType;
 };
 
 type ActionType = {
   type: string;
-  payload: string | CardType;
+  payload: string;
 };

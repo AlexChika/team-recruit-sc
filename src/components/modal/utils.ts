@@ -1,3 +1,5 @@
+import { types } from "./actions";
+
 function getTime() {
   const min = new Date().getMinutes();
   const hour = new Date().getHours();
@@ -39,6 +41,49 @@ function toggleClass(condition: boolean, el: HTMLElement, className = "error") {
 }
 
 function reducer(state: StateType, action: ActionType) {
+  const { type, payload } = action;
+  if (types.AddCardNumber === type) {
+    return {
+      ...state,
+      cardNumber: payload,
+    };
+  }
+
+  if (types.RemoveCardNumber === type) {
+    return {
+      ...state,
+      cardNumber: "",
+    };
+  }
+
+  if (types.AddExpiryYear === type) {
+    return {
+      ...state,
+      expiryYear: payload,
+    };
+  }
+
+  if (types.RemoveExpiryYear === type) {
+    return {
+      ...state,
+      expiryYear: "",
+    };
+  }
+
+  if (types.AddExpiryMonth === type) {
+    return {
+      ...state,
+      expiryMonth: payload,
+    };
+  }
+
+  if (types.RemoveExpiryMonth === type) {
+    return {
+      ...state,
+      expiryMonth: "",
+    };
+  }
+
   return state;
 }
 
