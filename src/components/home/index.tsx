@@ -30,32 +30,41 @@ const Home = () => {
               fantasize about a job offer
             </p>
 
-            <p>It definitely would make sense to work with your team.</p>
-          </div>
+            <p>
+              Even tho, this isn't that impressive, In the real world, we will
+              strive to make magic. It definitely would make sense to work with
+              your team.
+            </p>
 
-          <div className="paragraph">
             <p>Oh oh Before I forget, Here is a project brief</p>
           </div>
 
           <div className="dependencies">
             <ul>
               <h1>Core Dependencies</h1>
-              <li>React</li>
-              <li>React-dom</li>
-              <li>React-scripts</li>
-              <li>TypeScripts</li>
+              <div>
+                <li>React</li>
+                <li>React-dom</li>
+                <li>React-scripts</li>
+                <li>TypeScripts</li>
+              </div>
             </ul>
 
             <ul>
               <h1>App Dependencies</h1>
-              <li>Styled components</li>
-              <li>React icons</li>
+              <div>
+                <li>Styled components</li>
+                <li>React icons</li>
+              </div>
             </ul>
 
             <ul>
               <h1>External Resources</h1>
-              <li>windows 11 wallpaper</li>
-              <li>Mastercard logo png</li>
+
+              <div>
+                <li>windows 11 wallpaper</li>
+                <li>Mastercard logo png</li>
+              </div>
             </ul>
           </div>
         </div>
@@ -92,7 +101,6 @@ const Wrapper = styled.main`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -106,13 +114,13 @@ const Wrapper = styled.main`
     max-width: 900px;
     position: absolute;
     background-color: white;
-    padding: 30px 20px;
     font-style: italic;
 
     .home__content__footer {
       display: flex;
       gap: 20px;
       margin-top: 20px;
+      padding: 20px;
 
       button,
       a {
@@ -129,46 +137,51 @@ const Wrapper = styled.main`
     }
 
     .home__content__body {
-      text-align: left;
-      font-size: clamp(1.6rem, 2.8vw, 1.8rem);
+      text-align: center;
       font-weight: 600;
 
       .paragraph {
-        padding-left: 30px;ß
         margin-top: 30px;
+        padding: 10px;
 
-      p {
-        margin-top: 10px;
-      }
+        p {
+          margin-top: 10px;
+          font-size: clamp(1.6rem, 2.5vw, 1.7rem);
+        }
       }
 
       .dependencies {
-        margin: 0 auto;
-      }
-
-
-
-
-      ul {
+        background-color: rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
         margin-top: 30px;
 
+        ul {
+          width: 100%;
+          max-width: 250px;
+          display: flex;
+          align-items: center;
+          padding: 5px;
 
-      h1 {
-        font-size: clamp(1.7rem, 3vw, 2.3rem);
-        font-weight: 700;
-        color: var(--black-color);
+          h1 {
+            font-size: clamp(1.6rem, 2.5vw, 1.7rem);
+            font-weight: 700;
+            color: var(--black-color);
+            writing-mode: vertical-lr;
+          }
+
+          li {
+            list-style: none;
+          }
+        }
       }
-
-      li {
-        padding-left: 20px;
-        list-style: none;
-      }
-      }
-
-
     }
 
     .home__content__header {
+      padding: 20px;
+
       h1 {
         font-size: clamp(2rem, 3.5vw, 2.7rem);
         font-weight: 700;

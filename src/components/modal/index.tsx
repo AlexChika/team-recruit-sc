@@ -85,6 +85,7 @@ const Wrapper = styled.div`
   &.close {
     opacity: 0;
     transform: scale(0);
+    visibility: hidden;
   }
 
   .close__button {
