@@ -14,6 +14,7 @@ const CardNumber = () => {
     input3: "",
     input4: "",
   });
+  const [valid, setValid] = useState(false);
 
   function focusInputBox(number: string) {
     if (!InputWrapper.current) return;
@@ -88,15 +89,11 @@ const CardNumber = () => {
   function validator(cardNumber: string) {
     if (!InputWrapper.current) return;
     let el = InputWrapper.current.parentElement!;
-    console.log(isNaN(Number(cardNumber)));
-    console.log(typeof Number(cardNumber));
-
+    let valid = !isNaN(Number(cardNumber)) && cardNumber.length === 16;
     toggleClass(isNaN(Number(cardNumber)), el); //error class
-    toggleClass(
-      !isNaN(Number(cardNumber)) && cardNumber.length === 16,
-      el,
-      "valid"
-    ); //valid class
+    toggleClass(valid, el, "valid"); //valid class
+
+    valid ? setValid(true) : setValid(false);
   } // simply toggles error classes
 
   useEffect(() => {
@@ -211,7 +208,7 @@ const CardNumber = () => {
           </div>
         </article>
 
-        <span className="checkicon__wrapper fcenter">
+        <span className={`checkicon__wrapper fcenter ${valid ? "valid" : ""}`}>
           <BsFillPatchCheckFill />
         </span>
       </div>
@@ -317,6 +314,11 @@ const Wrapper = styled.div`
 
     .checkicon__wrapper {
       font-size: 14px;
+      color: var(--gray-color);
+    }
+
+    .checkicon__wrapper.valid {
+      color: blue;
     }
   }
 

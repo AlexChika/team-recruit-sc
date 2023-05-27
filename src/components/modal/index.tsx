@@ -6,31 +6,45 @@ import CvvNumber from "./CvvNumber";
 import Password from "./Password";
 import PayNowButton from "./PayNowButton";
 import OrderSummaryCard from "./OrderSummaryCard";
-import { useReducer } from "react";
+import { useReducer, useContext, createContext } from "react";
+import { reducer } from "./utils";
+
+const initialState: StateType = {
+  cards: [],
+  cardNumber: "",
+  expiryMonth: "",
+  expiryYear: "",
+};
+
+const ModalContext = createContext({});
 
 const Modal = () => {
-  // const [state, dispatch] = useReducer(first, second, third)
-  return (
-    <Wrapper>
-      {/* Card details form */}
-      <section>
-        <ModalHeader />
-        <CardNumber />
-        <CvvNumber />
-        <ExpiryDate />
-        <Password />
-        <PayNowButton />
-      </section>
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-      {/* purchase overview card */}
-      <section>
-        <OrderSummaryCard />
-      </section>
-    </Wrapper>
+  return (
+    <ModalContext.Provider value={{ ...state, dispatch }}>
+      <Wrapper>
+        {/* Card details form */}
+        <section>
+          <ModalHeader />
+          <CardNumber />
+          <CvvNumber />
+          <ExpiryDate />
+          <Password />
+          <PayNowButton />
+        </section>
+
+        {/* purchase overview card */}
+        <section>
+          <OrderSummaryCard />
+        </section>
+      </Wrapper>
+    </ModalContext.Provider>
   );
 };
 
 export default Modal;
+export const Store = () => useContext(ModalContext);
 
 const Wrapper = styled.div`
   display: flex;

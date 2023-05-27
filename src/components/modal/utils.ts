@@ -38,4 +38,8 @@ function toggleClass(condition: boolean, el: HTMLElement, className = "error") {
   }
 }
 
-export { getTime, toggleClass };
+function reducer(state: StateType, action: ActionType) {
+  return state;
+}
+
+export { getTime, toggleClass, reducer };
