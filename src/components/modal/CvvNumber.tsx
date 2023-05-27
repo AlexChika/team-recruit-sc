@@ -1,7 +1,22 @@
 import styled from "styled-components";
 import { BsGrid3X3GapFill } from "react-icons/bs";
+import { useState } from "react";
+import { toggleClass } from "./utils";
 
 const CvvNumber = () => {
+  const [cvvNumber, setCvvNumber] = useState("");
+
+  function inputOnchange(e: React.ChangeEvent<HTMLInputElement>) {
+    const value = e.currentTarget.value.split("").slice(0, 4).join("");
+    setCvvNumber(value);
+    validator(value, e.currentTarget.parentElement!);
+  }
+
+  function validator(number: string, el: HTMLElement) {
+    toggleClass(isNaN(Number(number)), el); //error class
+    toggleClass(!isNaN(Number(number)) && number.length === 4, el, "valid"); //valid class
+  } // simply toggles error classes
+
   return (
     <Wrapper>
       <div className="cvv__header">
@@ -10,7 +25,12 @@ const CvvNumber = () => {
       </div>
 
       <div className="cvv__box">
-        <input type="text" inputMode="numeric" />
+        <input
+          onChange={inputOnchange}
+          value={cvvNumber}
+          type="text"
+          inputMode="numeric"
+        />
 
         <span className="menu__icon fcenter ">
           <BsGrid3X3GapFill />
@@ -69,6 +89,13 @@ const Wrapper = styled.div`
       color: rgba(0, 0, 0, 0.3);
       font-size: 2rem;
     }
+  }
+
+  .cvv__box.error {
+    border: 1px solid rgba(255, 0, 0, 1);
+  }
+  .cvv__box.valid {
+    border: 1px solid rgba(0, 0, 255, 1);
   }
 
   @media screen and (min-width: 360px) {

@@ -1,6 +1,28 @@
+import { useState } from "react";
 import styled from "styled-components";
+import { toggleClass } from "./utils";
 
 const ExpiryDate = () => {
+  const [expiryMonth, setExpiryMonth] = useState("");
+  const [expiryYear, setExpiryYear] = useState("");
+
+  function expiryMonthOnchange(e: React.ChangeEvent<HTMLInputElement>) {
+    const val = e.currentTarget.value.split("").slice(0, 2).join("");
+    setExpiryMonth(val);
+    validator(val, e.currentTarget.parentElement!);
+  }
+
+  function expiryYearOnchange(e: React.ChangeEvent<HTMLInputElement>) {
+    const val = e.currentTarget.value.split("").slice(0, 2).join("");
+    setExpiryYear(val);
+    validator(val, e.currentTarget.parentElement!);
+  }
+
+  function validator(number: string, el: HTMLElement) {
+    toggleClass(isNaN(Number(number)), el); //error class
+    toggleClass(!isNaN(Number(number)) && number.length === 2, el, "valid"); //valid class
+  } // simply toggles error classes
+
   return (
     <Wrapper>
       <div className="expirydate__header">
@@ -10,13 +32,23 @@ const ExpiryDate = () => {
 
       <div className="expirydate__box">
         <div className="expirydate__month">
-          <input type="text" inputMode="numeric" />
+          <input
+            onChange={expiryMonthOnchange}
+            value={expiryMonth}
+            type="text"
+            inputMode="numeric"
+          />
         </div>
 
         <small>/</small>
 
         <div className="expirydate__year">
-          <input type="text" inputMode="numeric" />
+          <input
+            onChange={expiryYearOnchange}
+            value={expiryYear}
+            type="text"
+            inputMode="numeric"
+          />
         </div>
       </div>
     </Wrapper>
@@ -76,6 +108,15 @@ const Wrapper = styled.div`
         flex: 1;
         border-radius: inherit;
       }
+    }
+
+    .expirydate__year.error,
+    .expirydate__month.error {
+      border: 1px solid rgba(255, 0, 0, 1);
+    }
+    .expirydate__year.valid,
+    .expirydate__month.valid {
+      border: 1px solid rgba(0, 0, 255, 1);
     }
 
     small {

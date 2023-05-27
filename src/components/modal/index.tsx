@@ -6,8 +6,10 @@ import CvvNumber from "./CvvNumber";
 import Password from "./Password";
 import PayNowButton from "./PayNowButton";
 import OrderSummaryCard from "./OrderSummaryCard";
+import { useReducer } from "react";
 
 const Modal = () => {
+  // const [state, dispatch] = useReducer(first, second, third)
   return (
     <Wrapper>
       {/* Card details form */}

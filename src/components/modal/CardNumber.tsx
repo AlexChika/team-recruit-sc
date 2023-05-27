@@ -7,13 +7,13 @@ import { toggleClass } from "./utils";
 
 const CardNumber = () => {
   const InputWrapper = useRef<null | HTMLDivElement>(null);
+  const [cardNumber, setCardNumber] = useState("");
   const [inputVal, setInputVal] = useState({
     input1: "",
     input2: "",
     input3: "",
     input4: "",
   });
-  const [cardNumber, setCardNumber] = useState("");
 
   function focusInputBox(number: string) {
     if (!InputWrapper.current) return;
@@ -38,7 +38,7 @@ const CardNumber = () => {
       inputs[3].focus();
       inputs[3].click();
     }
-  }
+  } //function focuses the cursor on the next box
 
   function getTotalNumber(inputVal: {
     input1: string;
@@ -48,7 +48,7 @@ const CardNumber = () => {
   }) {
     let number = Object.values(inputVal).join("");
     return number;
-  }
+  } // gets the card Number by summing the 4 input values
 
   function inputOnChange(e: React.ChangeEvent<HTMLInputElement>) {
     let val = e.currentTarget.value;
@@ -62,7 +62,8 @@ const CardNumber = () => {
 
     setInputVal(newInputVal);
     setCardNumber(getTotalNumber(newInputVal));
-  }
+    validator(getTotalNumber(newInputVal));
+  } // the onChange function
 
   function onDelete(name: string, id: string) {
     if (name === "input1") return;
@@ -82,20 +83,21 @@ const CardNumber = () => {
       setInputVal(newInputVal);
       setCardNumber(getTotalNumber(newInputVal));
     }, 200);
-  }
+  } // fires when input values is been deleted
 
-  // effect toggles input error classes
-  useEffect(() => {
+  function validator(cardNumber: string) {
     if (!InputWrapper.current) return;
     let el = InputWrapper.current.parentElement!;
+    console.log(isNaN(Number(cardNumber)));
+    console.log(typeof Number(cardNumber));
 
-    toggleClass(!Number(cardNumber), el); //error class
+    toggleClass(isNaN(Number(cardNumber)), el); //error class
     toggleClass(
-      typeof Number(cardNumber) === "number" && cardNumber.length === 16,
+      !isNaN(Number(cardNumber)) && cardNumber.length === 16,
       el,
       "valid"
     ); //valid class
-  }, [inputVal]);
+  } // simply toggles error classes
 
   useEffect(() => {
     focusInputBox(cardNumber);
@@ -322,7 +324,7 @@ const Wrapper = styled.div`
     border: 1px solid rgba(255, 0, 0, 1);
   }
   .cardnumber__box.valid {
-    border: 2px solid rgba(0, 0, 255, 1);
+    border: 1px solid rgba(0, 0, 255, 1);
   }
 
   @media screen and (min-width: 360px) {
