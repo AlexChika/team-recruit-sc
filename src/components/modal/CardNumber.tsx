@@ -3,6 +3,7 @@ import { FaPencilAlt } from "react-icons/fa";
 import { BsFillPatchCheckFill } from "react-icons/bs";
 import MasterCardLogo from "../../assets/mastercardlogo.png";
 import { useState, useRef, useEffect } from "react";
+import { toggleClass } from "./utils";
 
 const CardNumber = () => {
   const InputWrapper = useRef<null | HTMLDivElement>(null);
@@ -39,18 +40,19 @@ const CardNumber = () => {
     }
   }
 
-  function getTotalNumber(cardNumber: {
+  function getTotalNumber(inputVal: {
     input1: string;
     input2: string;
     input3: string;
     input4: string;
   }) {
-    let number = Object.values(cardNumber).join("");
+    let number = Object.values(inputVal).join("");
     return number;
   }
 
   function inputOnChange(e: React.ChangeEvent<HTMLInputElement>) {
     let val = e.currentTarget.value;
+
     let name = e.currentTarget.name;
 
     const newInputVal = {
@@ -62,9 +64,8 @@ const CardNumber = () => {
     setCardNumber(getTotalNumber(newInputVal));
   }
 
-  function remove(name: string, id: string) {
+  function onDelete(name: string, id: string) {
     if (name === "input1") return;
-
     const prevBoxName = `input${Number(id) - 1}`;
 
     //  @ts-ignore
@@ -77,16 +78,24 @@ const CardNumber = () => {
       [prevBoxName]: newVal,
     };
 
-    console.log({ newInputVal });
-
     setTimeout(() => {
       setInputVal(newInputVal);
       setCardNumber(getTotalNumber(newInputVal));
-    }, 500);
+    }, 200);
   }
 
+  // effect toggles input error classes
   useEffect(() => {
+    if (!InputWrapper.current) return;
+    let el = InputWrapper.current.parentElement!;
+
     focusInputBox(cardNumber);
+    toggleClass(!Number(cardNumber), el); //error class
+    toggleClass(
+      typeof Number(cardNumber) === "number" && cardNumber.length === 16,
+      el,
+      "valid"
+    ); //valid class
   }, [cardNumber]);
 
   useEffect(() => {
@@ -102,7 +111,7 @@ const CardNumber = () => {
 
       if ((e.key === "Delete" || e.key === "Backspace") && isDeleting) {
         console.log("deleting");
-        remove(name, id);
+        onDelete(name, id);
       }
     }
 
@@ -115,6 +124,7 @@ const CardNumber = () => {
         input.removeEventListener("keydown", DeleteInput);
       });
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cardNumber]);
 
   return (
@@ -303,6 +313,13 @@ const Wrapper = styled.div`
     .checkicon__wrapper {
       font-size: 14px;
     }
+  }
+
+  .cardnumber__box.error {
+    border: 1px solid rgba(255, 0, 0, 1);
+  }
+  .cardnumber__box.valid {
+    border: 2px solid rgba(0, 0, 255, 1);
   }
 
   @media screen and (min-width: 360px) {

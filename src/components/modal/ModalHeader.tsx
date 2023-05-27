@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { HiCreditCard } from "react-icons/hi";
-import getTime from "../../utils/helper";
+import { getTime } from "./utils";
 
 const ModalHeader = () => {
   const HeaderTime = useRef<null | HTMLDivElement>(null);

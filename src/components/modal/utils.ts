@@ -30,4 +30,12 @@ function getTime() {
   };
 }
 
-export default getTime;
+function toggleClass(condition: boolean, el: HTMLElement, className = "error") {
+  if (condition) {
+    el.classList.add(className);
+  } else {
+    el.classList.remove(className);
+  }
+}
+
+export { getTime, toggleClass };
