@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import { MdOutlineClose } from "react-icons/md";
+
+// components..........
 import ModalHeader from "./ModalHeader";
 import CardNumber from "./CardNumber";
 import ExpiryDate from "./ExpiryDate";
@@ -6,9 +9,16 @@ import CvvNumber from "./CvvNumber";
 import Password from "./Password";
 import PayNowButton from "./PayNowButton";
 import OrderSummaryCard from "./OrderSummaryCard";
-import { useReducer, useContext, createContext } from "react";
-import { reducer } from "./utils";
 
+// state
+import {
+  useReducer,
+  useContext,
+  createContext,
+  SetStateAction,
+  Dispatch,
+} from "react";
+import { reducer } from "./utils";
 const initialState: StateType = {
   cards: [],
   cardNumber: "",
@@ -16,15 +26,29 @@ const initialState: StateType = {
   expiryYear: "",
   dispatch: "",
 };
-
 const ModalContext = createContext(initialState);
 
-const Modal = () => {
+// modal prop type
+type ModalProp = {
+  showModal: boolean;
+  setShowModal: Dispatch<SetStateAction<boolean>>;
+};
+
+// app.....
+const Modal = ({ showModal, setShowModal }: ModalProp) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <ModalContext.Provider value={{ ...state, dispatch }}>
-      <Wrapper>
+      <Wrapper className={showModal ? "" : "close"}>
+        <button
+          onClick={() => setShowModal(!showModal)}
+          className="close__button"
+          type="button"
+        >
+          <MdOutlineClose />
+        </button>
+
         {/* Card details form */}
         <section>
           <ModalHeader />
@@ -51,10 +75,55 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   background-color: white;
+  position: relative;
   width: 100%;
   max-width: 900px;
   padding: 20px 10px;
   margin: 0 auto;
+
+  &.close {
+    animation: closemodal 0.7s linear;
+    display: none;
+  }
+
+  .close__button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(173, 173, 173, 0.1);
+    color: var(--gray-color);
+    padding: 3px 10px;
+    font-size: 2rem;
+    font-weight: 700;
+    animation: button 5s linear infinite;
+  }
+
+  @keyframes closemodal {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+      display: block;
+    }
+
+    99% {
+      opacity: 0;
+      tarnsform: scale(0);
+    }
+
+    100% {
+      display: none;
+    }
+  }
+
+  @keyframes button {
+    0%,
+    95% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 
   section {
     width: 100%;
