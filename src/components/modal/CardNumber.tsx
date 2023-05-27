@@ -2,8 +2,121 @@ import styled from "styled-components";
 import { FaPencilAlt } from "react-icons/fa";
 import { BsFillPatchCheckFill } from "react-icons/bs";
 import MasterCardLogo from "../../assets/mastercardlogo.png";
+import { useState, useRef, useEffect } from "react";
 
 const CardNumber = () => {
+  const InputWrapper = useRef<null | HTMLDivElement>(null);
+  const [inputVal, setInputVal] = useState({
+    input1: "",
+    input2: "",
+    input3: "",
+    input4: "",
+  });
+  const [cardNumber, setCardNumber] = useState("");
+
+  function focusInputBox(number: string) {
+    if (!InputWrapper.current) return;
+    const inputs = [...InputWrapper.current.querySelectorAll("input")];
+
+    if (number.length < 4) {
+      inputs[0].focus();
+      inputs[0].click();
+    }
+
+    if (number.length >= 4 && !(number.length > 8)) {
+      inputs[1].focus();
+      inputs[1].click();
+    }
+
+    if (number.length >= 8 && !(number.length > 12)) {
+      inputs[2].focus();
+      inputs[2].click();
+    }
+
+    if (number.length >= 12) {
+      inputs[3].focus();
+      inputs[3].click();
+    }
+  }
+
+  function getTotalNumber(cardNumber: {
+    input1: string;
+    input2: string;
+    input3: string;
+    input4: string;
+  }) {
+    let number = Object.values(cardNumber).join("");
+    return number;
+  }
+
+  function inputOnChange(e: React.ChangeEvent<HTMLInputElement>) {
+    let val = e.currentTarget.value;
+    let name = e.currentTarget.name;
+
+    const newInputVal = {
+      ...inputVal,
+      [name]: val.split("").slice(0, 4).join(""),
+    };
+
+    setInputVal(newInputVal);
+    setCardNumber(getTotalNumber(newInputVal));
+  }
+
+  function remove(name: string, id: string) {
+    if (name === "input1") return;
+
+    const prevBoxName = `input${Number(id) - 1}`;
+
+    //  @ts-ignore
+    const prevVal = inputVal[prevBoxName];
+    let newVal = prevVal.split("");
+    newVal = (newVal.pop(), newVal.join(""));
+
+    const newInputVal = {
+      ...inputVal,
+      [prevBoxName]: newVal,
+    };
+
+    console.log({ newInputVal });
+
+    setTimeout(() => {
+      setInputVal(newInputVal);
+      setCardNumber(getTotalNumber(newInputVal));
+    }, 500);
+  }
+
+  useEffect(() => {
+    focusInputBox(cardNumber);
+  }, [cardNumber]);
+
+  useEffect(() => {
+    if (!InputWrapper.current) return;
+    const inputs = [...InputWrapper.current.querySelectorAll("input")];
+
+    function DeleteInput(e: KeyboardEvent) {
+      const name = (e.currentTarget! as HTMLInputElement).name;
+      const id = (e.currentTarget! as HTMLInputElement).id;
+
+      // @ts-ignore
+      const isDeleting = inputVal[name].length < 1;
+
+      if ((e.key === "Delete" || e.key === "Backspace") && isDeleting) {
+        console.log("deleting");
+        remove(name, id);
+      }
+    }
+
+    inputs.forEach((input: HTMLInputElement) => {
+      input.addEventListener("keydown", DeleteInput);
+    });
+
+    return () => {
+      inputs.forEach((input: HTMLInputElement) => {
+        input.removeEventListener("keydown", DeleteInput);
+      });
+    };
+  }, [cardNumber]);
+
   return (
     <Wrapper>
       <div className="cardnumber__header">
@@ -18,20 +131,25 @@ const CardNumber = () => {
         <p>Enter the 16-digit card number on the card</p>
       </div>
 
-      <div className="cardnumber__box">
+      <div
+        onClick={() => focusInputBox(cardNumber)}
+        className="cardnumber__box"
+      >
         <span className="logo__wrapper">
           <img src={MasterCardLogo} alt="" />
         </span>
 
         {/* number / inputs wrapper */}
-        <article>
+        <article ref={InputWrapper}>
           <div>
             <input
               type="text"
               placeholder="0000"
               inputMode="numeric"
-              name=""
-              id=""
+              value={inputVal.input1}
+              id="1"
+              onChange={inputOnChange}
+              name="input1"
             />
           </div>
 
@@ -39,11 +157,13 @@ const CardNumber = () => {
 
           <div>
             <input
+              value={inputVal.input2}
+              onChange={inputOnChange}
+              id="2"
               type="text"
               placeholder="0000"
               inputMode="numeric"
-              name=""
-              id=""
+              name="input2"
             />
           </div>
 
@@ -51,11 +171,13 @@ const CardNumber = () => {
 
           <div>
             <input
+              value={inputVal.input3}
+              onChange={inputOnChange}
+              id="3"
               type="text"
               placeholder="0000"
               inputMode="numeric"
-              name=""
-              id=""
+              name="input3"
             />
           </div>
 
@@ -63,11 +185,13 @@ const CardNumber = () => {
 
           <div>
             <input
+              value={inputVal.input4}
+              onChange={inputOnChange}
               type="text"
               placeholder="0000"
               inputMode="numeric"
-              name=""
-              id=""
+              name="input4"
+              id="4"
             />
           </div>
         </article>

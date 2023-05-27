@@ -31,10 +31,10 @@ const CreditCard = () => {
         </div>
       </div>
 
-      <div className="no__card fcenter">
+      {/* <div className="no__card fcenter">
         <p>You have no saved cards</p>
         <h3>fill in your card details</h3>
-      </div>
+      </div> */}
     </Wrapper>
   );
 };
@@ -48,7 +48,7 @@ const Wrapper = styled.div`
   position: relative;
 
   .card {
-    filter: blur(4px);
+    /* filter: blur(4px); */
   }
 
   .no__card {
