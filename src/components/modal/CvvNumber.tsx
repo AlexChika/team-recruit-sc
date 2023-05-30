@@ -11,7 +11,7 @@ const CvvNumber = () => {
   const { cards } = Store();
 
   function inputOnchange(e: React.ChangeEvent<HTMLInputElement>) {
-    const value = e.currentTarget.value.split("").slice(0, 4).join("");
+    const value = e.currentTarget.value.trim().split("").slice(0, 4).join("");
     setCvvNumber(value);
     validator(value, e.currentTarget.parentElement!);
   }

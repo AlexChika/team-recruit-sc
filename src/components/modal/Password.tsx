@@ -11,7 +11,7 @@ const Password = () => {
   const { cards } = Store();
 
   function inputOnchange(e: React.ChangeEvent<HTMLInputElement>) {
-    const value = e.currentTarget.value.split("").slice(0, 8).join("");
+    const value = e.currentTarget.value.trim().split("").slice(0, 8).join("");
     setPassword(value);
     validator(value, e.currentTarget.parentElement!);
   }

@@ -56,8 +56,7 @@ const CardNumber = () => {
   } // gets the card Number by summing the 4 input values
 
   function inputOnChange(e: React.ChangeEvent<HTMLInputElement>) {
-    let val = e.currentTarget.value;
-
+    let val = e.currentTarget.value.trim();
     let name = e.currentTarget.name;
 
     const newInputVal = {

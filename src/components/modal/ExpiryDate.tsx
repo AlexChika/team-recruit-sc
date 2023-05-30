@@ -15,14 +15,14 @@ const ExpiryDate = () => {
   const { dispatch, cards } = Store();
 
   function expiryMonthOnchange(e: React.ChangeEvent<HTMLInputElement>) {
-    const val = e.currentTarget.value.split("").slice(0, 2).join("");
+    const val = e.currentTarget.value.trim().split("").slice(0, 2).join("");
     setExpiryMonth(val);
     const valid = validator(val, e.currentTarget.parentElement!);
     setIsValid({ ...isValid, expiryMonth: valid });
   }
 
   function expiryYearOnchange(e: React.ChangeEvent<HTMLInputElement>) {
-    const val = e.currentTarget.value.split("").slice(0, 2).join("");
+    const val = e.currentTarget.value.trim().split("").slice(0, 2).join("");
     setExpiryYear(val);
     const valid = validator(val, e.currentTarget.parentElement!);
     setIsValid({ ...isValid, expiryYear: valid });
